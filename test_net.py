@@ -43,7 +43,7 @@ if __name__ == '__main__':
         sz = sz * (1+actual/100.0)
         if sum_output >= 0.0 :
             asset = asset * (1+actual/100.0)
-        print sz,asset
+        print(sz,asset)
         sz_list.append(sz)
         asset_list.append(asset)
 
