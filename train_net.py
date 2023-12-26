@@ -16,11 +16,11 @@ def incorrectness(mlp,loader):
         input,target = data
         input = Variable(input)
         actual = target[0][0]
-    output = mlp(input.float())
-    if (output.data[0][0] * actual) >= 0:
-        correct = correct + 1
-    else :
-        incorrect = incorrect + 1
+        output = mlp(input.float())
+        if (output.data[0][0] * actual) >= 0:
+            correct = correct + 1
+        else :
+            incorrect = incorrect + 1
     return incorrect/(correct+incorrect)
 
 
@@ -75,14 +75,14 @@ def train(trainloader,testloader):
         test_c = incorrectness(mlp,testloader)
         print ('[ %d ] incorrectness: %.4f %.4f' % (epoch+1,train_c,test_c))
 	
-    mlp_list.append(mlp)
-    crt_list.append(train_c+test_c)
+        mlp_list.append(mlp)
+        crt_list.append(train_c+test_c)
 
-    if epoch >= moving_average:
-        if early_stop(crt_list,moving_average):
-            print('Early stopping.')
-        index = len(mlp_list) - moving_average/2
-        return mlp_list[index]
+        if epoch >= moving_average:
+            if early_stop(crt_list,moving_average):
+                print('Early stopping.')
+            index = len(mlp_list) - moving_average/2
+            return mlp_list[int(index)]
 
         current_loss = 0
         
